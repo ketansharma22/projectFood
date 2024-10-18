@@ -1,0 +1,25 @@
+#signup{
+    width: screen;
+    height: 100vh;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(43, 39, 39);
+    
+
+}
+button{
+    width: 200px;
+    height: 35px;
+    background: grey;
+    border-radius: 20px;
+    font-size: larger;
+    font-weight: bold;
+    transition: .1s all ;
+    cursor: pointer;
+
+}
+button:hover{
+    transform: scaleX(1.2);
+}

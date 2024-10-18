@@ -1,0 +1,5 @@
+#homemain{
+    width: screen;
+    height: calc(100vh - 100px );
+    background: pink;
+}

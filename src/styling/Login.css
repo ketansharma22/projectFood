@@ -1,0 +1,37 @@
+#login {
+  width: screen;
+  height: 100vh;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(43, 39, 39);
+}
+#boxes {
+  font-size: 20px;
+  font-weight: bolder;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: baseline;
+}
+input {
+  width: 250px;
+  height: 25px;
+  padding: 5px;
+  border-radius: 10px;
+  font-size: large;
+}
+
+#form {
+  background-color: whitesmoke;
+  border: solid 2px silver;
+  padding: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+
+  flex-direction: column;
+  border-radius: 20px;
+}

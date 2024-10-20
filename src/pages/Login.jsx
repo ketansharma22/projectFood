@@ -2,7 +2,9 @@ import React from "react";
 import "../styling/Login.css";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
+  const navigate=useNavigate()
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -16,7 +18,7 @@ const Login = () => {
     e.preventDefault();
     try {
       toast.loading("Loggin in", { id: "login" });
-      //api req
+      navigate('/dashboard')
       toast.success("Logged in", { id: "login" });
     } catch (error) {
       console.log(error);
@@ -24,6 +26,7 @@ const Login = () => {
     }
 
     setData({ email: "", password: "" });
+  
   };
   return (
     <div id="login">

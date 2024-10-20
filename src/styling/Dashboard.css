@@ -1,0 +1,71 @@
+#dashboard{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+background:beige;
+width: screen;
+height: auto;
+overflow-x:hidden ;
+}
+#navbaar{
+    padding: 10px;
+    width: max-content;
+    height: 100px;
+    background: black ;
+    color: whitesmoke; 
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    gap: 100px;
+    backdrop-filter: blur(5px);
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+#maindash{
+    width: screen;
+    height: max-content
+}
+
+#maindash h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px;
+    font-size: 750%;
+}
+
+#moving{
+    display: flex;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    position: relative;
+}
+#image {
+    width: 240px; /* Adjust based on your image size */
+    flex-shrink: 0;
+  }
+
+  #main2dash{
+    width: screen;
+    height: auto;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+  #search{
+    width: max-content;
+    padding: 5px;
+    height: max-content;
+
+  }
+  #search:hover{
+     transform: scaleX(1);
+  }

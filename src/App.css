@@ -4,3 +4,11 @@
   box-sizing: border-box;
   font-family: sans-serif;
 }
+@font-face {
+  font-family: "dodle";
+  src: url('../fonts/SFPRODISPLAYREGULAR.OTF') format('OTF');
+}
+
+body{
+  font-family: dodle;
+}

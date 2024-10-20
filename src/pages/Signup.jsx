@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import "../styling/Signup.css";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const navigate=useNavigate()
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -12,7 +14,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       toast.loading("Signing up", { id: "signup" });
-      //api req
+      navigate('/dashboard')
       toast.success("Signed up ", { id: "signup" });
     } catch (error) {
       console.log(error);

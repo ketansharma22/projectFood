@@ -1,5 +1,31 @@
-#homemain{
-    width: screen;
-    height: calc(100vh - 100px );
-    background: pink;
+@font-face {
+  font-family: "dodle";
+  src: url("../fonts/SFPRODISPLAYREGULAR.OTF") format("OTF");
+}
+#home {
+  background-image: url("../images/back.jpg");
+  display: flex;
+  align-items: center;
+flex-direction: column;
+  justify-content: center;
+}
+#homemain {
+  width: screen;
+  height: calc(100vh - 100px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#same {
+  width: 100px;
+  border-radius: 50px;
+  position: absolute;
+  transition: 0.1s ease-out;
+  z-index: 2;
+}
+
+#heading {
+  font-size: 150px;
+  font-family: fantasy;
+  z-index: 1;
 }

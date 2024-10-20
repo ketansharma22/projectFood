@@ -33,7 +33,7 @@ const Dashboard = () => {
     //       setLocation(place.formatted_address);
     //     }
     //   };
-    // //   const api=process.env.REACT_APP_API_GOOGLE
+      const api=process.env.REACT_APP_API_GOOGLE
       
     const navigate=useNavigate()
     const[location,setLocation]=useState("")
@@ -42,7 +42,7 @@ const Dashboard = () => {
         console.log(location);
         try {    
             toast.loading("finding Restraunts",{id:"search"})
-            const response = await fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+${encodeURIComponent(location)}&key=${AIzaSyDR3oxlQGyXBRQTKOJwyVwhynvStFcdZUg}`);
+            const response = await fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+${encodeURIComponent(location)}&key=${api}`);
             const data = await response.json();
             if (data.status === 'OK') {
                 setRestaurants(data.results);

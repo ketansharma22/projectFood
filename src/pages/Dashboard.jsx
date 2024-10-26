@@ -10,6 +10,7 @@ import chowmin from '../images/chowmin.webp'
 import { Draggable } from 'gsap/Draggable'
 import toast from 'react-hot-toast'
 import { Autocomplete } from '@react-google-maps/api'
+import { useAuth } from '../context/AuthContext'
 // import { config } from 'dotenv'
 // config()
 gsap.registerPlugin(Draggable);
@@ -33,22 +34,19 @@ const Dashboard = () => {
     //       setLocation(place.formatted_address);
     //     }
     //   };
-      const api=process.env.REACT_APP_API_GOOGLE
-      
+      const auth=useAuth()
     const navigate=useNavigate()
     const[location,setLocation]=useState("")
     const handleSubmit=async(e)=>{
         e.preventDefault()
-        console.log(location);
+        console.log(location);  
         try {    
             toast.loading("finding Restraunts",{id:"search"})
-            const response = await fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+${encodeURIComponent(location)}&key=${api}`);
-            const data = await response.json();
-            if (data.status === 'OK') {
-                setRestaurants(data.results);
-        navigate('/restraunts')
-        toast.success("Found",{id:"search"})
-            }
+            const response=await auth.searchRes(location)
+            
+                setRestaurants(response);
+                navigate('/restraunts')
+                toast.success("Found",{id:"search"})
         } catch (error) {
             console.log(error);
             toast.error("Error Finding Restraunts",{id:"search"})
@@ -99,13 +97,13 @@ const Dashboard = () => {
         {/* <img src={} /> */}
             <Link style={{textDecoration:"none",color:"whitesmoke",fontSize:"25px"}} to='/about'>About</Link>
             <Link style={{textDecoration:"none",color:"whitesmoke",fontSize:"25px"}} to='/contact'>Contact</Link>
-            <Link style={{textDecoration:"none",color:"whitesmoke",fontSize:"25px"}} to='/menu'>Menu</Link>
+            {/* <Link style={{textDecoration:"none",color:"whitesmoke",fontSize:"25px"}} to='/menu'>Menu</Link> */}
             <button style={{textDecoration:"none",color:"whitesmoke",fontSize:"25px",fontWeight:"900",background:"transparent",border
             :"none",fontFamily:"cursive"}} >Logout</button>
             
     </div>
     <div id='maindash'>
-        <h1>Nourishment and nostalgia in every tiffin.</h1>
+        <h1 > Nourishment and nostalgia in every tiffin.</h1>
     </div>
     <div ref={containerRef} id='moving'>
     {images.concat(images).map((src, index) => (
@@ -125,6 +123,7 @@ const Dashboard = () => {
       </form>
       <ul>
         {restaurants.map((restaurant) => (
+
           <li key={restaurant.place_id}>{restaurant.name}</li>
         ))}
       </ul>

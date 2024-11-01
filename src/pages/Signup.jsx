@@ -2,19 +2,22 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import "../styling/Signup.css";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const Signup = () => {
+  const auth=useAuth()
   const navigate=useNavigate()
   const [data, setData] = useState({
     name: "",
     email: "",
     password: "",
   });
-  const handleSubmit = (e) => {
+  const handleSubmit =async (e) => {
     e.preventDefault();
     try {
       toast.loading("Signing up", { id: "signup" });
-      navigate('/dashboard')
+      await auth.signUpAuth(data.name,data.email,data.password)
+      // navigate('/dashboard')
       toast.success("Signed up ", { id: "signup" });
     } catch (error) {
       console.log(error);

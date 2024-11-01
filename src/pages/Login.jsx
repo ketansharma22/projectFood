@@ -3,7 +3,9 @@ import "../styling/Login.css";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 const Login = () => {
+  const auth=useAuth()
   const navigate=useNavigate()
   const [data, setData] = useState({
     email: "",
@@ -14,11 +16,13 @@ const Login = () => {
     const { name, value } = e.target;
     setData((prev) => ({ ...prev, [name]: value }));
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     try {
       toast.loading("Loggin in", { id: "login" });
-      navigate('/dashboard')
+      await auth.loginAuth(data.email,data.password)
+
+      // navigate('/dashboard')
       toast.success("Logged in", { id: "login" });
     } catch (error) {
       console.log(error);

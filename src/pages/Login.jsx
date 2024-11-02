@@ -20,14 +20,22 @@ const Login = () => {
     e.preventDefault();
     try {
       toast.loading("Loggin in", { id: "login" });
-      await auth.loginAuth(data.email,data.password)
+      const res=await auth.loginAuth(data.email,data.password)
+      if(res.status!=403 && res.status!=401){
+        toast.success(`${res}`,{id:"login"})
+        navigate('/dashboard')
+      }
+      else if(res.status==403) toast.error("incorrect password",{id:"login"})
+      else if(res.status==401) toast.error("user does not exixts",{id:"login"})
+    }catch(error){
+      console.log(error)
+      toast.error("an error occured",{id:"login"})
 
-      // navigate('/dashboard')
-      toast.success("Logged in", { id: "login" });
-    } catch (error) {
-      console.log(error);
-      toast.error("Error loggin in", { id: "login" });
     }
+      
+      
+      
+    
 
     setData({ email: "", password: "" });
   

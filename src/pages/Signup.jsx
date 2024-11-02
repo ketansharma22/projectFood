@@ -14,17 +14,15 @@ const Signup = () => {
   });
   const handleSubmit =async (e) => {
     e.preventDefault();
-    try {
+   
       toast.loading("Signing up", { id: "signup" });
-      await auth.signUpAuth(data.name,data.email,data.password)
+      const res=await auth.signUpAuth(data.name,data.email,data.password)
       // navigate('/dashboard')
-      toast.success("Signed up ", { id: "signup" });
-    } catch (error) {
-      console.log(error);
-      toast.error("an Error occured", { id: "signup" });
-    }
+      if(res.status== 409 ) toast.error("user already exists",{id:"signup"});
+      if(res.status== 200 ) toast.success("Signed up ", { id: "signup" });
+      else toast.error("an error occured",{id:"signup"})
     setData({ name: "", email: "", password: "" });
-  };
+}
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData((prev) => ({ ...prev, [name]: value }));

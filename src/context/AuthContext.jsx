@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { loginApi, searchLocation, signUpApi } from "../helpers/apiComm"
 
 
@@ -11,6 +11,17 @@ export function AuthProvider({children}){
     const[user,setUser]=useState(null)
     const[isLoggedIn,setIsLoggedIn]=useState(false)
 
+    useEffect(()=>{
+        async function checkStatus() {
+            const data= await checkAuthStatus()
+            if (data){
+                setUser({email:data.email,name:data.name})
+                setIsLoggedIn(true)
+            }
+        }
+        checkStatus()
+    },[])
+
     const searchRes=async(location)=>{
         
         const res=await searchLocation(location)
@@ -19,13 +30,19 @@ export function AuthProvider({children}){
 
     const loginAuth=async(email,password)=>{
         const res=await loginApi(email,password)
-        const data=res.data
-        return data
+        if(res){
+            setUser({email:res.email,name:res.name})
+            setIsLoggedIn(true)
+        }
+        return res
     }
     const signUpAuth=async(name,email,password)=>{
         const res=await signUpApi(name,email,password)
-        const data=res.data
-        return data
+        if(res){
+            setUser({email:res.email,name:res.name})
+            setIsLoggedIn(true)
+        }
+        return res  
     }
 
     const value={

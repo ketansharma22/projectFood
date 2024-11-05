@@ -6,7 +6,7 @@ import "./index.css";
 import axios from "axios";
 import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext.jsx";
-axios.defaults.baseURL="http://localhost:5000/api/v1"
+axios.defaults.baseURL="http://localhost:5001/api/v1"
 axios.defaults.withCredentials= true;
 createRoot(document.getElementById("root")).render(
   <StrictMode>

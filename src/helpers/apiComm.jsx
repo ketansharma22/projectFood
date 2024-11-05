@@ -37,9 +37,16 @@ export const signUpApi=async(name,email,password)=>{
     }
 }
 
-// export const checkAuthStatus=async()={
-//     const res=await axios.get("/users/authStatus")
-//     if(res.status !=200){
-//         throw new Error("Unable to Authenticate")
-//     }
-// }
+export const checkAuthStatus =async()=>{
+    try {
+        const result=await axios.get("/users/auth-status")
+        if(result.status!=200){
+            throw new Error("Unable to Authenticate")
+        }
+        const data=await result.data
+        return data
+    
+    } catch (error) {
+        console.log(error)
+    }
+}

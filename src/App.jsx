@@ -8,7 +8,10 @@ import Contact from "./pages/Contact";
 import Menu from "./pages/Menu";
 import Dashboard from "./pages/Dashboard";
 import Restraunts from "./pages/Restraunts";
+import { useAuth } from "./context/AuthContext";
 function App() {
+  const auth=useAuth()
+  console.log(auth.isLoggedIn, auth.user)
   return (
     <div>
       <Routes>
@@ -18,7 +21,13 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact/>} />
         <Route path="/menu" element={<Menu/>} />
-        <Route path="/dashboard" element={<Dashboard/>} />
+    
+        { 
+          auth.isLoggedIn && auth.user && (
+          <Route path="/dashboard" element={<Dashboard/>} />
+        )
+        }
+       
         <Route path="/restraunts" element={<Restraunts/>} />
       </Routes>
     </div>

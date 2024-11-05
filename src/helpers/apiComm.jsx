@@ -50,3 +50,12 @@ export const checkAuthStatus =async()=>{
         console.log(error)
     }
 }
+
+export const logoutApi=async()=>{
+    const res=await axios.get('/users/logout')
+    if(res.status !== 200){
+        throw new Error("Unable to logout")
+    }
+    const data=await res.data
+    return data
+}

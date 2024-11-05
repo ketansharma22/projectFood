@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -10,6 +10,7 @@ import Dashboard from "./pages/Dashboard";
 import Restraunts from "./pages/Restraunts";
 import { useAuth } from "./context/AuthContext";
 function App() {
+  const navigate=useNavigate()
   const auth=useAuth()
   console.log(auth.isLoggedIn, auth.user)
   return (
@@ -23,7 +24,7 @@ function App() {
         <Route path="/menu" element={<Menu/>} />
     
         { 
-          auth.isLoggedIn && auth.user && (
+          auth.isLoggedIn && auth.user &&(
           <Route path="/dashboard" element={<Dashboard/>} />
         )
         }

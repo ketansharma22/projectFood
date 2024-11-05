@@ -8,7 +8,11 @@ import paranthe from '../images/paranthe.avif'
 import chowmin from  '../images/chowmin.webp'
 import pizza from '../images/pizza.webp'
 import thali from '../images/thali.webp'
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 const Home = () => {
+  const navigate=useNavigate()
+  const auth=useAuth()
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   useEffect(() => {
     const handleMouseMove = (event) => {
@@ -24,6 +28,12 @@ const Home = () => {
       window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
+
+  useEffect(()=>{
+    if(auth.user){
+      return navigate('/dashboard')
+    }
+  },[auth])
 
   const calculateTransform = (x, y) => {
     const moveX = (x / window.innerWidth - 0.5) * 30; 

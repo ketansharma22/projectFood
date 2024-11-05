@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../styling/Login.css";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 const Login = () => {
   const auth=useAuth()
   const navigate=useNavigate()
+  useEffect(()=>{
+    if(auth.user){
+      return navigate('/dashboard')
+    }
+  },[auth])
+  
   const [data, setData] = useState({
     email: "",
     password: "",

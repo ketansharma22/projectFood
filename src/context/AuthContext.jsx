@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
-import { checkAuthStatus, loginApi, searchLocation, signUpApi } from "../helpers/apiComm"
+import { checkAuthStatus, loginApi, logoutApi, searchLocation, signUpApi } from "../helpers/apiComm"
+import { replace, useNavigate } from "react-router-dom"
 
 
 const AuthContext=React.createContext()
@@ -15,6 +16,7 @@ export function AuthProvider({children}){
         async function checkStatus() {
             const data= await checkAuthStatus()
             console.log(data)
+
             if (data){
                 setUser({email:data.email,name:data.name})
                 setIsLoggedIn(true)
@@ -46,13 +48,19 @@ export function AuthProvider({children}){
         }
         return res  
     }
+    const logoutAuth=async()=>{
+        await logoutApi()
+        setIsLoggedIn(false)
+        setUser(null)
+    }
 
     const value={
         user,
         isLoggedIn,
         searchRes,
         loginAuth,
-        signUpAuth
+        signUpAuth,
+        logoutAuth
     }
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

@@ -22,6 +22,8 @@ const images=[
         chowmin,
     ]
 const Dashboard = () => {
+  
+  
     const [restaurants, setRestaurants] = useState([]);
     const inputRef=useRef(null)
     // const onLoad = (autocomplete) => {
@@ -55,6 +57,15 @@ const Dashboard = () => {
 
     }
     
+    const handleLogout=async()=>{
+      try {
+        await auth.logoutAuth()
+        navigate('/login',{replace:true})
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
     const containerRef = useRef(null);
 
         const scrollRef = useRef(null);
@@ -98,7 +109,7 @@ const Dashboard = () => {
             <Link style={{textDecoration:"none",color:"whitesmoke",fontSize:"25px"}} to='/about'>About</Link>
             <Link style={{textDecoration:"none",color:"whitesmoke",fontSize:"25px"}} to='/contact'>Contact</Link>
             {/* <Link style={{textDecoration:"none",color:"whitesmoke",fontSize:"25px"}} to='/menu'>Menu</Link> */}
-            <button style={{textDecoration:"none",color:"whitesmoke",fontSize:"25px",fontWeight:"900",background:"transparent",border
+            <button onClick={handleLogout} style={{textDecoration:"none",color:"whitesmoke",fontSize:"25px",fontWeight:"900",background:"transparent",border
             :"none",fontFamily:"cursive"}} >Logout</button>
             
     </div>

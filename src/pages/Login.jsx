@@ -27,8 +27,9 @@ const Login = () => {
     try {
       toast.loading("Loggin in", { id: "login" });
       const res=await auth.loginAuth(data.email,data.password)
-      if(res.status!=403 && res.status!=401){
-        toast.success(`${res}`,{id:"login"})
+      console.log(res)
+      if(res.message=="logged in"){
+        toast.success(`${res.message}`,{id:"login"})
         navigate('/dashboard')
       }
       else if(res.status==403) toast.error("incorrect password",{id:"login"})

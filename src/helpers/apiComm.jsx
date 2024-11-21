@@ -14,8 +14,12 @@ export const loginApi=async(email,password)=>{
     // console.log(email,password)
     try {
         const res=await axios.post('/users/login',{email,password})
+        if(res.status==401 && res.status==403){
+            throw new Error("Unable To Login")
+        }
         const data=await res.data
-        console.log(data)
+        
+        console.log(data.status)
         return data
     } catch (error) {
         console.log(error)

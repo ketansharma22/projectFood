@@ -69,3 +69,32 @@ overflow-x:hidden ;
   #search:hover{
      transform: scaleX(1);
   }
+
+  /* src/components/Venues.css */
+
+.venues-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.venue-card {
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 300px;
+  text-align: center;
+}
+
+.venue-card h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.venue-card p {
+  margin: 5px 0;
+  color: #555;
+}

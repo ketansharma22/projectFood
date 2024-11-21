@@ -33,16 +33,18 @@ export function AuthProvider({children}){
 
     const loginAuth=async(email,password)=>{
         const res=await loginApi(email,password)
-        if(res){
+        if(res.status==200){
             console.log(res)
             setUser({email:res.email,name:res.name})
             setIsLoggedIn(true)
         }
         return res
+        
     }
     const signUpAuth=async(name,email,password)=>{
         const res=await signUpApi(name,email,password)
-        if(res){
+        console.log(res.email)
+        if(res.status){
             setUser({email:res.email,name:res.name})
             setIsLoggedIn(true)
         }

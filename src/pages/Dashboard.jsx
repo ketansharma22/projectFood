@@ -11,6 +11,7 @@ import { Draggable } from 'gsap/Draggable'
 import toast from 'react-hot-toast'
 import { Autocomplete } from '@react-google-maps/api'
 import { useAuth } from '../context/AuthContext'
+import axios from 'axios'
 // import { config } from 'dotenv'
 // config()
 gsap.registerPlugin(Draggable);
@@ -22,6 +23,17 @@ const images=[
         chowmin,
     ]
 const Dashboard = () => {
+  
+  const handleSearchRestaurants=async(e)=>{
+    e.preventDefault()
+    try {
+      const response = await axios.get('/main/nearby-restaurants');
+      setRestaurants(response.data);
+    } catch (error) {
+      console.error('Error fetching venues:', error);
+    }
+  
+}
   
   
     const [restaurants, setRestaurants] = useState([]);
@@ -122,23 +134,17 @@ const Dashboard = () => {
       ))}
     </div>
 
-      <form onSubmit={handleSubmit} id='main2dash'>
-      <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:"20px"}}><label>Enter location</label>
-     
+    <button onClick={handleSearchRestaurants} >Search Restaurants</button>
 
-      <input ref={inputRef} style={{padding:"12px",fontWeight:"600"}} onChange={(e)=>setLocation(e.target.value)} value={location} type='search' name='location' />
-      
-      {location && <p>Selected Address :{location}</p>}
-      </div>
-      <button id='search' type='submit'>Find Restraunts</button>
-      </form>
-      <ul>
-        {restaurants.map((restaurant) => (
-
-          <li key={restaurant.place_id}>{restaurant.name}</li>
+    <div className="venues-container">
+        {restaurants.map((venue) => (
+          <div key={venue.fsq_id} className="venue-card">
+            <h2>{venue.name}</h2>
+            <p>{venue.location.address}</p>
+            <p>{venue.location.city}, {venue.location.state}</p>
+          </div>
         ))}
-      </ul>
-
+      </div>
 
     </div>
   )

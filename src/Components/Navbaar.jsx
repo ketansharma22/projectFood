@@ -29,6 +29,7 @@ const Navbaar = () => {
     <button style={{textDecoration:"none",color:"white",fontSize:"25px",background:"transparent",border:"none"}}  onClick={handleDownload} >Menu</button>
     <Link style={{textDecoration:"none",color:"white",fontSize:"25px",fontWeight:"900",fontFamily:"cursive"}} to='/login'>Login</Link>
     <Link style={{textDecoration:"none",color:"white",fontSize:"25px",fontWeight:"900",fontFamily:"cursive"}} to='/signup'>Signup</Link>
+    
     </div>
 )
 };

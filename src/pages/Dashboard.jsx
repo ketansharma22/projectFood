@@ -121,6 +121,7 @@ const Dashboard = () => {
             <Link style={{textDecoration:"none",color:"whitesmoke",fontSize:"25px"}} to='/about'>About</Link>
             <Link style={{textDecoration:"none",color:"whitesmoke",fontSize:"25px"}} to='/contact'>Contact</Link>
             {/* <Link style={{textDecoration:"none",color:"whitesmoke",fontSize:"25px"}} to='/menu'>Menu</Link> */}
+            <Link style={{textDecoration:"none",color:"white",fontSize:"25px",fontWeight:"900",fontFamily:"cursive"}} to='/homemade'>HomeMade</Link>
             <button onClick={handleLogout} style={{textDecoration:"none",color:"whitesmoke",fontSize:"25px",fontWeight:"900",background:"transparent",border
             :"none",fontFamily:"cursive"}} >Logout</button>
             

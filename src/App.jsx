@@ -9,6 +9,8 @@ import Menu from "./pages/Menu";
 import Dashboard from "./pages/Dashboard";
 import Restraunts from "./pages/Restraunts";
 import { useAuth } from "./context/AuthContext";
+import HomeMade from "./pages/HomeMade";
+import Cart from "./pages/Cart";
 function App() {
   const navigate=useNavigate()
   const auth=useAuth()
@@ -26,6 +28,16 @@ function App() {
         { 
           auth.isLoggedIn && auth.user &&(
           <Route path="/dashboard" element={<Dashboard/>} />
+        )
+        }
+        { 
+          auth.isLoggedIn && auth.user &&(
+          <Route path="/homemade" element={<HomeMade/>} />
+        )
+        }
+        { 
+          auth.isLoggedIn && auth.user &&(
+          <Route path="/cart" element={<Cart/>} />
         )
         }
        
